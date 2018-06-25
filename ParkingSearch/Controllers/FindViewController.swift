@@ -105,7 +105,11 @@ class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapView
                 let long = dict["Long"] as! String
                 let price = dict["Price"] as! String
                 let reserved = dict["Reserved"] as! String
-                if(price != "0"){
+                print(price)
+                if(price == "0"){
+                    print("tsampa")
+                    title = "Free Parking"
+                }else{
                     title = "\(price)/Hour €"
                 }
                 self.AddParkingOnMapFromFirebase(pinLocation: CLLocationCoordinate2DMake(Double(lati)!, Double(long)!),title: title)
