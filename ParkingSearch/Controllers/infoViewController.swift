@@ -8,10 +8,13 @@
 
 import UIKit
 import FirebaseStorage
-
+import FirebaseDatabase
 class infoViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var priceText: UILabel!
+    @IBOutlet weak var usernameText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadImage()
@@ -23,18 +26,44 @@ class infoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func downloadImage(){
-        let storageRef = Storage.storage().reference(forURL: "https://firebasestorage.googleapis.com/v0/b/parkingfinder-9f852.appspot.com/o/parkingImages%2F35.295442584808324.9300385.png?alt=media&token=c1e5a959-1016-48dc-9fc7-4f880eedc820")
-
-        storageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
-            if let error = error {
-                print(error.localizedDescription)
+    func getUrl(completion: @escaping (_ result: String , _ _username: String, _ price: String) -> Void){
+        var downloadUrl:String = "";
+        var username:String = ""
+        var price:String = ""
+        let dbref = Database.database().reference().child("parking")
+        let query = dbref.queryOrdered(byChild: "ID").queryEqual(toValue: "37.990782095805823.7385553")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children{
+                let snap = child as! DataSnapshot
+                let dict = snap.value as! [String: Any]
+                 username = dict["Username"] as! String
+                 downloadUrl = dict["PhotoUrl"] as! String
+                price = dict["Price"] as! String
+                
             }
-            let image = UIImage(data: data!)
-            self.imageView.image = image
+            completion(downloadUrl , username , price)
         }
-        
     }
+    
+    func downloadImage(){
+        getUrl { (url,username,price) in
+            
+            let storageRef = Storage.storage().reference(forURL: url)
+            storageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                let image = UIImage(data: data!)
+                self.imageView.image = image
+        }
+            self.usernameText.text = "By \(username)"
+            self.priceText.text = price
+        
+        }
+    }
+        
+    
+    
     
 
     /*

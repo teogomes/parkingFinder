@@ -191,12 +191,12 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5W-0c-3My">
-                                <rect key="frame" x="129" y="264" width="115.66666666666669" height="32"/>
+                                <rect key="frame" x="37" y="264" width="303" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location-36-512" translatesAutoresizingMaskIntoConstraints="NO" id="6h7-ko-VXJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6h7-ko-VXJ">
                                 <rect key="frame" x="66" y="143" width="240" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="8Eh-Nx-PWk"/>
@@ -226,21 +226,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-E9-Xmo">
+                                <rect key="frame" x="75" y="474" width="16.333333333333329" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vUX-oT-a17" firstAttribute="trailing" secondItem="U5W-0c-3My" secondAttribute="trailing" constant="129.66999999999999" id="0gY-Lm-Npy"/>
+                            <constraint firstItem="vUX-oT-a17" firstAttribute="trailing" secondItem="U5W-0c-3My" secondAttribute="trailing" constant="35" id="0gY-Lm-Npy"/>
                             <constraint firstItem="vUX-oT-a17" firstAttribute="trailing" secondItem="6h7-ko-VXJ" secondAttribute="trailing" constant="69" id="4AY-04-we7"/>
                             <constraint firstItem="6h7-ko-VXJ" firstAttribute="top" secondItem="nnv-KU-Sjo" secondAttribute="bottom" constant="69" id="8ws-nc-X3j"/>
                             <constraint firstItem="vUX-oT-a17" firstAttribute="trailing" secondItem="Yyz-bw-KdR" secondAttribute="trailing" constant="10" id="9eu-5o-IU4"/>
                             <constraint firstItem="Mhs-gv-Nv2" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="10" id="Agl-y0-6GT"/>
                             <constraint firstItem="vUX-oT-a17" firstAttribute="bottom" secondItem="uT2-gR-qLc" secondAttribute="bottom" constant="50" id="AsQ-U3-OvR"/>
+                            <constraint firstItem="ecQ-E9-Xmo" firstAttribute="leading" secondItem="Mhs-gv-Nv2" secondAttribute="trailing" constant="8" id="DEg-3A-j1I"/>
                             <constraint firstItem="HUO-Y4-z6Z" firstAttribute="top" secondItem="U5W-0c-3My" secondAttribute="bottom" constant="8" id="DOM-kw-vUs"/>
                             <constraint firstItem="HUO-Y4-z6Z" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="10" id="FKI-iC-PgM"/>
                             <constraint firstItem="nnv-KU-Sjo" firstAttribute="trailing" secondItem="vUX-oT-a17" secondAttribute="trailing" id="H11-dc-oeq"/>
+                            <constraint firstItem="ecQ-E9-Xmo" firstAttribute="top" secondItem="Yyz-bw-KdR" secondAttribute="bottom" constant="22" id="I6x-t7-7mU"/>
                             <constraint firstItem="Yyz-bw-KdR" firstAttribute="top" secondItem="HUO-Y4-z6Z" secondAttribute="bottom" constant="8" id="JQz-VV-ZPL"/>
                             <constraint firstItem="6h7-ko-VXJ" firstAttribute="top" secondItem="vUX-oT-a17" secondAttribute="top" constant="99" id="N0y-Oh-20v"/>
-                            <constraint firstItem="U5W-0c-3My" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="129" id="Oxv-K6-XmB"/>
+                            <constraint firstItem="U5W-0c-3My" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="37" id="Oxv-K6-XmB"/>
                             <constraint firstItem="vUX-oT-a17" firstAttribute="top" secondItem="nnv-KU-Sjo" secondAttribute="top" constant="14" id="PEY-kt-uYk"/>
                             <constraint firstItem="uT2-gR-qLc" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="155" id="RPz-nD-img"/>
                             <constraint firstItem="vUX-oT-a17" firstAttribute="trailing" secondItem="uT2-gR-qLc" secondAttribute="trailing" constant="156" id="Y1j-d5-XLr"/>
@@ -249,7 +257,7 @@
                             <constraint firstItem="U5W-0c-3My" firstAttribute="top" secondItem="6h7-ko-VXJ" secondAttribute="bottom" constant="21" id="hPY-Vq-szb"/>
                             <constraint firstItem="vUX-oT-a17" firstAttribute="trailing" secondItem="HUO-Y4-z6Z" secondAttribute="trailing" constant="10" id="jzP-Pb-4cY"/>
                             <constraint firstItem="Yyz-bw-KdR" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="10" id="sIg-vn-Bvm"/>
-                            <constraint firstItem="U5W-0c-3My" firstAttribute="centerX" secondItem="SxH-X9-hmE" secondAttribute="centerX" id="uHW-k6-a2s"/>
+                            <constraint firstItem="U5W-0c-3My" firstAttribute="centerX" secondItem="SxH-X9-hmE" secondAttribute="centerX" constant="1" id="uHW-k6-a2s"/>
                             <constraint firstItem="nnv-KU-Sjo" firstAttribute="top" secondItem="SxH-X9-hmE" secondAttribute="top" constant="30" id="xsU-cP-Vd8"/>
                             <constraint firstItem="6h7-ko-VXJ" firstAttribute="leading" secondItem="vUX-oT-a17" secondAttribute="leading" constant="66" id="zg5-5B-Cva"/>
                         </constraints>
@@ -261,11 +269,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="6h7-ko-VXJ" id="TiN-y7-Hvf"/>
+                        <outlet property="priceText" destination="ecQ-E9-Xmo" id="8Et-of-ACM"/>
+                        <outlet property="usernameText" destination="U5W-0c-3My" id="Js7-aV-I6g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R0u-DO-fDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="-1256"/>
+            <point key="canvasLocation" x="1804" y="-1256.1576354679803"/>
         </scene>
         <!--Add Parking-->
         <scene sceneID="5TH-kd-UUi">
@@ -450,7 +460,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Location-36-512" width="40" height="40"/>
         <image name="gps_location_map_marker-512" width="30" height="30"/>
         <image name="parking_2-512" width="30" height="30"/>
         <image name="parking_2-512.png" width="30" height="30"/>
