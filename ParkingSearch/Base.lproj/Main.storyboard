@@ -90,65 +90,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lnh-Pf-kfO">
-                                <rect key="frame" x="139" y="343" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ip6-bH-4vj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="523" id="0Dp-21-wLc"/>
+                                    <constraint firstAttribute="height" constant="729" id="0Dp-21-wLc"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="NVD-jx-Kdt" id="kCl-ZI-Utc"/>
+                                    <outletCollection property="gestureRecognizers" destination="Vt4-b3-gy6" appends="YES" id="Dc8-Fe-TFh"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p45-7h-EOn">
-                                <rect key="frame" x="121" y="658" width="132" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Parking Spot"/>
-                                <connections>
-                                    <action selector="addParkingSpot:" destination="NVD-jx-Kdt" eventType="touchUpInside" id="xX0-Up-qtd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpf-Wb-t80">
-                                <rect key="frame" x="307" y="531" width="59" height="37"/>
-                                <state key="normal" title="Location"/>
-                                <connections>
-                                    <action selector="getUserLocation:" destination="NVD-jx-Kdt" eventType="touchUpInside" id="Gbf-ff-54O"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tV5-Ng-sXy">
-                                <rect key="frame" x="86" y="32" width="195" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVd-DG-cZx">
-                                <rect key="frame" x="289" y="32" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="parking_2-512.png"/>
-                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="artis-crystal-pure-white-plain-worktops-accessories-wu-products-adhesive-bb-complete-290ml-17063-p[ekm]303x303" translatesAutoresizingMaskIntoConstraints="NO" id="7Va-De-Uqw">
+                                <rect key="frame" x="-8" y="-7" width="393" height="43"/>
+                            </imageView>
+                            <navigationBar alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiL-TJ-3AD">
+                                <rect key="frame" x="1" y="32" width="375" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem id="q3h-L2-PY6">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="0nt-WK-RcL">
+                                            <connections>
+                                                <action selector="searchButton:" destination="NVD-jx-Kdt" id="8hN-kf-BdY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="QuickActions_Location_2x" id="w4S-Ur-1zc">
+                                            <connections>
+                                                <action selector="getUserLocation:" destination="NVD-jx-Kdt" id="8O9-XK-02v"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wVd-DG-cZx" firstAttribute="leading" secondItem="tV5-Ng-sXy" secondAttribute="trailing" constant="8" id="0Um-bB-6rA"/>
-                            <constraint firstItem="tV5-Ng-sXy" firstAttribute="leading" secondItem="AcM-Xx-p3q" secondAttribute="leading" constant="86" id="1UX-cP-cAu"/>
-                            <constraint firstItem="wVd-DG-cZx" firstAttribute="top" secondItem="U4g-WR-yee" secondAttribute="top" constant="32" id="3iB-cF-xl2"/>
-                            <constraint firstItem="kpf-Wb-t80" firstAttribute="leading" secondItem="AcM-Xx-p3q" secondAttribute="leading" constant="307" id="6A3-Em-VvU"/>
                             <constraint firstItem="ip6-bH-4vj" firstAttribute="trailing" secondItem="AcM-Xx-p3q" secondAttribute="trailing" id="6nz-7c-Aqa"/>
+                            <constraint firstItem="BiL-TJ-3AD" firstAttribute="top" secondItem="U4g-WR-yee" secondAttribute="top" constant="32" id="8u9-qE-LgT"/>
                             <constraint firstItem="ip6-bH-4vj" firstAttribute="top" secondItem="U4g-WR-yee" secondAttribute="top" id="F3w-TN-Gl2"/>
-                            <constraint firstItem="AcM-Xx-p3q" firstAttribute="bottom" secondItem="p45-7h-EOn" secondAttribute="bottom" constant="30" id="HjV-EK-mid"/>
-                            <constraint firstAttribute="trailing" secondItem="tV5-Ng-sXy" secondAttribute="trailing" constant="94" id="PYC-3L-hra"/>
-                            <constraint firstItem="AcM-Xx-p3q" firstAttribute="trailing" secondItem="p45-7h-EOn" secondAttribute="trailing" constant="122" id="TRs-Rd-npf"/>
-                            <constraint firstItem="tV5-Ng-sXy" firstAttribute="top" secondItem="U4g-WR-yee" secondAttribute="top" constant="32" id="dIM-5e-aSZ"/>
-                            <constraint firstItem="kpf-Wb-t80" firstAttribute="top" secondItem="ip6-bH-4vj" secondAttribute="bottom" constant="8" id="eGi-38-jHZ"/>
+                            <constraint firstItem="BiL-TJ-3AD" firstAttribute="trailing" secondItem="AcM-Xx-p3q" secondAttribute="trailing" constant="1" id="HaR-gd-uo3"/>
+                            <constraint firstItem="7Va-De-Uqw" firstAttribute="bottom" secondItem="BiL-TJ-3AD" secondAttribute="bottom" constant="-40" id="JGA-nA-5xa"/>
+                            <constraint firstItem="AcM-Xx-p3q" firstAttribute="leading" secondItem="7Va-De-Uqw" secondAttribute="leading" constant="8" id="MC8-Z6-mEn"/>
+                            <constraint firstItem="BiL-TJ-3AD" firstAttribute="leading" secondItem="AcM-Xx-p3q" secondAttribute="leading" constant="1" id="N6i-Lf-ss1"/>
+                            <constraint firstItem="7Va-De-Uqw" firstAttribute="trailing" secondItem="AcM-Xx-p3q" secondAttribute="trailing" constant="10" id="Xrs-Ji-bqp"/>
                             <constraint firstItem="ip6-bH-4vj" firstAttribute="leading" secondItem="AcM-Xx-p3q" secondAttribute="leading" id="nEF-FP-pb4"/>
-                            <constraint firstItem="p45-7h-EOn" firstAttribute="leading" secondItem="AcM-Xx-p3q" secondAttribute="leading" constant="121" id="thj-gT-gaX"/>
-                            <constraint firstItem="AcM-Xx-p3q" firstAttribute="trailing" secondItem="kpf-Wb-t80" secondAttribute="trailing" constant="9" id="zxu-Ze-RBp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AcM-Xx-p3q"/>
                     </view>
@@ -162,6 +147,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jYY-2C-e0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Vt4-b3-gy6">
+                    <connections>
+                        <action selector="addParkingSpot:" destination="NVD-jx-Kdt" id="4kf-S4-Nsz"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="776.79999999999995" y="-1256.1576354679803"/>
         </scene>
@@ -460,11 +450,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="QuickActions_Location_2x" width="16" height="16"/>
+        <image name="artis-crystal-pure-white-plain-worktops-accessories-wu-products-adhesive-bb-complete-290ml-17063-p[ekm]303x303" width="303" height="303"/>
         <image name="gps_location_map_marker-512" width="30" height="30"/>
         <image name="parking_2-512" width="30" height="30"/>
-        <image name="parking_2-512.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="fBv-u0-aWu"/>
         <segue reference="Kbt-R7-wNT"/>
     </inferredMetricsTieBreakers>
 </document>

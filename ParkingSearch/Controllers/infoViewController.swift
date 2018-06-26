@@ -12,12 +12,17 @@ import FirebaseDatabase
 class infoViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    
+    public var  ID:String = ""
     @IBOutlet weak var priceText: UILabel!
     @IBOutlet weak var usernameText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        downloadImage()
+        if(ID == "-1"){
+           
+        }else{
+            downloadImage()
+        }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -31,7 +36,7 @@ class infoViewController: UIViewController {
         var username:String = ""
         var price:String = ""
         let dbref = Database.database().reference().child("parking")
-        let query = dbref.queryOrdered(byChild: "ID").queryEqual(toValue: "37.990782095805823.7385553")
+        let query = dbref.queryOrdered(byChild: "ID").queryEqual(toValue: ID)
         query.observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children{
                 let snap = child as! DataSnapshot

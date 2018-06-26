@@ -17,9 +17,72 @@ import FirebaseAuth
 
 
 
-class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapViewDelegate {
+class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapViewDelegate , UISearchBarDelegate{
+    
+  
+    
+    @IBAction func searchButton(_ sender: Any) {
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        present(searchController,animated: true,completion: nil)
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        //Activity indicator
+        
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        self.view.addSubview(activityIndicator)
+        
+        //Hide SearchBar
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        //Create the Search Request
+        let searchRequest = MKLocalSearchRequest()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        let activitySearch = MKLocalSearch(request: searchRequest)
+        
+        activitySearch.start { (response, error) in
+            
+            activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            if response == nil {
+                print("Error")
+            }else{
+                
+                
+                //Getting Data
+                let latidude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+               
+                
+                //Zooming Annotation
+                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latidude!, longitude!)
+                let span:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
+                let region = MKCoordinateRegionMake(coordinate, span)
+                self.map.setRegion(region, animated: true)
+            }
+        }
+        
+    }
+    
+    
+    
     
     let manager = CLLocationManager()
+    var IDtoSend:String = ""
     var myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(0,0)
     var databaseRef = Database.database().reference()
     @IBOutlet weak var map: MKMapView!
@@ -105,9 +168,8 @@ class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapView
                 let long = dict["Long"] as! String
                 let price = dict["Price"] as! String
                 let reserved = dict["Reserved"] as! String
-                print(price)
+
                 if(price == "0"){
-                    print("tsampa")
                     title = "Free Parking"
                 }else{
                     title = "\(price)/Hour €"
@@ -125,6 +187,7 @@ class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapView
         }))
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             self.writeToFirebase()
+            self.readFromFirebase()
             alert.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
@@ -153,8 +216,10 @@ class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapView
             view.rightCalloutAccessoryView = button
             let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
             if(annotation.title == "Free Parking"){
+               
                 leftIconView.image = #imageLiteral(resourceName: "freeParkingImage")
-            }else{
+            }else {
+                
                 leftIconView.image = #imageLiteral(resourceName: "paid-parking")
             }
            
@@ -163,17 +228,26 @@ class FindViewController: UIViewController , CLLocationManagerDelegate,MKMapView
         return view
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //Getting ID
-//        String((view.annotation?.coordinate.latitude)!+(view.annotation?.coordinate.longitude)!)
-        databaseRef.queryOrdered(byChild: "ID").queryEqual(toValue: "61.6732223358654").observe(.value) { (snapshot) in
+       let annotation = view.annotation as? MKAnnotation
+        if annotation is MKUserLocation {
+            return
         }
+        
+        IDtoSend = String((annotation?.coordinate.latitude)!) + String((annotation?.coordinate.longitude)!)
+        if( annotation?.title == "Free Parking"){
+            IDtoSend = "-1"
+        }
+        
+        
     }
     
     @objc  func infoClicked(){
-//        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "infoViewController") as! infoViewController
-//
-//        self.navigationController.pushViewController(secondViewController, animated: true)
         performSegue(withIdentifier: "infoSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination as? infoViewController
+        viewController?.ID = IDtoSend
     }
     
     
